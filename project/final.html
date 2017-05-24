@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+
+<head>
+
+  <link rel="stylesheet" type="text/css" href="CSS_viz.css">
+
+  <h1>Visualizing algorithms of nonlinear data reduction techniques</h1>
+
+  <p> <br />
+      The Iteratives visualized are the #1, #10, #30, #100, #300, respectively (per column). <br />In <i>Show per dataset</i>, <i>Iterative</i> means that the Sammon Mapping, SNE and t-SNE are visualized (per row) and <i>Eigenvalue</i> means that the kPCA, LLE and Isomap are visualized (per row). <br />In <i>Show per technique</i>, the Ionosphere data, Churn data and Semeion data are shown, respectively (per row).<br />
+     <strong>Missing plots:</strong>  <i>Show per techniques</i> -> <i>Eigenvalue techniques</i>. <br />
+      <br /> </p>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3-random.v1.min.js"></script>
+
+<script src="buttons.js"></script>
+
+<script src="eig_real.js"></script>
+<script src="eig_art.js"></script>
+<script src="eig_art1D.js"></script>
+
+</head>
+
+<body>
+
+<input id="data_set" type="button"  value="Show per dataset"  onClick="data_set();"/>
+
+<input id="artificial" class="but vs" type="button"  value="Artificial data" onClick="art();"/>
+
+<input id="real" class="but vs" type="button"  value="Real data" onClick="real();"/>
+
+
+    <div id="div12">  
+
+<input id="cluster" class="but data3 arti" type="button"  value="Clustered data" onClick="cl();"/>
+
+<input id="no cluster" class="but data3 arti" type="button"  value="Non-clustered data" onClick="nocl();"/>
+
+<input id="cl_iter" class="but" type="button"  value="Clustered - Iterative"  onClick="class7_iter(); cont();"/>
+
+<input id="cl_eig" class="but" type="button"  value="Clustered - Eigenvalue"  onClick="eig_cl7(); cont();"/>
+
+<input id="nocl_iter" class="but" type="button"  value="Non-clustered - Iterative"  onClick="class5_iter(); cont();"/>
+
+<input id="nocl_eig" class="but" type="button"  value="Non-clustered - Eigenvalue"  onClick="eig_cl5(); cont();"/>
+
+
+</div>
+
+
+    <div id="div12">  
+
+<input id="iono" class="but data3 re" type="button"  value="Ionosphere data" onClick="iono();"/>
+
+<input id="churn" class="but data3 re" type="button"  value="Churn data" onClick="churn();"/>
+
+<input id="seme" class="but data3 re" type="button"  value="Semeion data" onClick="seme();"/>
+
+<input id="mush" class="but data3 re" type="button"  value="Mushroom data" onClick="mush();"/>
+
+<input id="breast" class="but data3 re" type="button"  value="Breast Cancer data" onClick="breast();"/>
+
+<input id="iono_iter" class="but" type="button"  value="Ionosphere - Iterative"  onClick="iono_iter(); cont();"/>
+
+<input id="iono_eig" class="but" type="button"  value="Ionosphere - Eigenvalue"  onClick="eig_iono(); cont();"/>
+
+<input id="iono_iter_video" class="but" type="button"  value="Ionosphere - Iterative - video"  onClick="iono_iter(); cont123();"/>
+
+<input id="churn_iter" class="but" type="button"  value="Churn - Iterative"  onClick="churn_iter(); cont();"/>
+
+<input id="churn_eig" class="but" type="button"  value="Churn - Eigenvalue"  onClick="eig_churn(); cont();"/>
+
+<input id="churn_iter_video" class="but" type="button"  value="Churn - Iterative - video"  onClick="churn_eig(); cont123();"/>
+
+<input id="seme_iter" class="but" type="button"  value="Semeion - Iterative"  onClick="seme_iter(); cont();"/>
+
+<input id="seme_eig" class="but" type="button"  value="Semeion - Eigenvalue" onClick="eig_seme(); cont();"/>
+
+<input id="seme_iter_video" class="but" type="button"  value="Semeion - Iterative - video" onClick="seme_eig(); cont123();"/>
+
+<input id="mush_iter" class="but" type="button"  value="Mushroom - Iterative"  onClick="mush_iter(); cont();"/>
+
+<input id="mush_eig" class="but" type="button"  value="Mushroom - Eigenvalue" onClick="eig_mush(); cont();"/>
+
+<input id="mush_iter_video" class="but" type="button"  value="Mushroom - Iterative - video"  onClick="mush_iter_video(); cont123();"/>
+
+<input id="breast_iter" class="but" type="button"  value="Breast Cancer - Iterative"  onClick="breast_iter(); cont();"/>
+
+<input id="breast_eig" class="but" type="button"  value="Breast Cancer - Eigenvalue" onClick="eig_breast(); cont();"/>
+
+<input id="breast_iter_video" class="but" type="button"  value="Breast Cancer - Iterative - video"  onClick="breast_iter_video(); cont123();"/>
+
+
+</div>
+
+
+<input id="tech" type="button"  value="Show per technique"  onClick="tech();"/>
+
+    <div id="div2">  
+
+<input id="iter_b" class="but" type="button"  value="Iterative techniques"  onClick="iter();"/>
+
+<input id="eig_b" class="but" type="button"  value="Eigenvalue techniques" onClick="eig();"/>
+
+<input id="real_b" class="but eigen_t" type="button"  value="with real data"  onClick="cont123(); eig_real();"/>
+
+<input id="art_b" class="but eigen_t" type="button"  value="with artificial data" onClick="cont123(); eig_art();"/>
+
+<input id="art1D_b" class="but eigen_t" type="button"  value="with 2D artificial data"  onClick="cont123(); eig_art1D();"/>
+
+<input id="sammon_b" class="but opt_t" type="button"  value="Sammon Mapping"  onClick="cont123(); sammon_f();"/>
+
+<input id="sne_b" class="but opt_t" type="button"  value="SNE" onClick="cont123(); sne_f();"/>
+
+<input id="tsne_b" class="but opt_t" type="button"  value="t-SNE" onClick="cont123(); tsne_f();"/>
+
+</div>
+
+
+<input id="one_d" type="button"  value="From 2D to 1D"  onClick="onedim(); cont123();"/>
+
+    <div id="div3">  
+
+<input id="cl_1D" class="but data3 oneD" type="button"  value="Clustered data"  onClick="cl1D();"/>
+
+<input id="mickey_1D" class="but data3 oneD" type="button"  value="Mickey Mouse data" onClick="mickey1D();"/>
+
+<input id="circle_1D" class="but data3 oneD" type="button"  value="Circle data" onClick="circle1D();"/>
+
+<input id="cl_iter_1D" class="but" type="button"  value="Clustered - Iterative - 2D to 1D"  onClick="cl_iter_1D(); cont();"/>
+
+<input id="cl_eig_1D" class="but" type="button"  value="Clustered - Eigenvalue - 2D to 1D"  onClick="eig_cl2D(); cont();"/>
+
+<input id="mickey_iter_1D" class="but" type="button"  value="Mickey Mouse - Iterative - 2D to 1D"  onClick="mickey_iter_1D(); cont();"/>
+
+<input id="mickey_eig_1D" class="but" type="button"  value="Mickey Mouse - Eigenvalue - 2D to 1D"  onClick="eig_mickey(); cont();"/>
+
+<input id="circle_iter_1D" class="but" type="button"  value="Circle - Iterative - 2D to 1D"  onClick="circle_iter_1D(); cont();"/>
+
+<input id="circle_eig_1D" class="but" type="button"  value="Circle - Eigenvalue - 2D to 1D"  onClick="eig_circle(); cont();"/>
+
+</div>
+
+    <div id="div3">  
+
+<input id="two_d" type="button"  value="From 3D to 2D"  onClick="twodim();"/>
+
+<input id="cl_2D" class="but data3 twoD" type="button"  value="Clustered data" onClick="R();"/>
+
+<input id="swiss" class="but data3 twoD" type="button"  value="Swiss Roll data" onClick="swiss();"/>
+
+<input id="cl_iter_2D" class="but" type="button"  value="Clustered data - Iterative - 3D to 2D"  onClick="cl_iter_2D(); cont();"/>
+
+<input id="swiss_iter" class="but" type="button"  value="Swiss Roll - Iterative - 3D to 2D"  onClick="swiss_iter(); cont();"/>
+
+<input id="swiss_eig" class="but" type="button"  value="Swiss Roll - Eigenvalue - 3D to 2D"  onClick="eig_swiss(); cont();"/>
+
+</div><br />
+<br />
+
+
+<button id="clear" onClick="window.location.reload()">Clear</button>
+
+<svg id="Container" style="display:none" width="280" height="630"></svg>
+
+<div>
+<div id="Container1" style="display:none" class="multi_cont"> </div>
+<div id="Container2" style="display:none" class="multi_cont"> </div>
+<div id="Container3" style="display:none" class="multi_cont"> </div>
+<div id="Container4" style="display:none" class="multi_cont"> </div>
+<div id="Container5" style="display:none" class="multi_cont"> </div>
+</div>
+
+</body>
+
+<p> <br />
+<br />
+      The data sets used are:<br />
+<br />
+      <b>Artificial Data:</b><br />
+      <a href="http://www.datasetgenerator.com/"><i>Clustered data</i> </a> - 1000x100 - <i>Labels:</i>  7 clusters <br />
+      <a href="http://www.datasetgenerator.com/"><i>Non-clustered data</i> </a> - 1000x40 - <i>Labels:</i>  5 classes randomly assigned <br />
+      <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html"><i>Clustered data - 2D</i> </a> - 1600x2 - <i>Labels:</i>  4 clusters <br />
+      <i>Circle data - 2D</i> - 1671x2 - <i>Labels:</i>  2 classes (circle + centre) <br />
+      <a href="https://github.com/lki-project/elki/blob/master/data/synthetic/Vorlesung/mouse.csv"><i>Mickey Mouse data - 2D</i> </a> - 500x2 - <i>Labels:</i>  3 classes + noise <br />
+      <i>Clustered data - 3D</i> -  1250x3 - <i>Labels:</i>  4 clusters (from 4 different normal distributions) <br />
+      <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html"><i>Swiss Roll data - 3D</i> </a> - 1600x3 - <i>Labels:</i>  4 clusters <br />
+
+<br />
+      <b>Real Data:</b><br />
+      <a href="https://archive.ics.uci.edu/ml/datasets/Ionosphere"><i>Ionosphere data</i></a> - 351x34 - <i>Labels:</i>  'Good'/'Bad' <br />
+      <i>Churn data</i> (private data set) - 5000x17 - <i>Labels:</i> 'Churn'/'No churn'<br />
+      <a href="https://archive.ics.uci.edu/ml/datasets/Semeion+Handwritten+Digit"><i>Semeion Handwritten Digit data</i></a> - 1593x256 - No labels available <br />
+      <a href="https://www.kaggle.com/uciml/mushroom-classification"><i>Mushroom data</i></a> - 3000x23 - <i>Labels:</i>  'Edible/Poisonous' <br />
+      <a href="https://www.kaggle.com/uciml/breast-cancer-wisconsin-data"><i>Breast Cancer Wisconsin (Diagnostic) data</i> </a> - 569x32 - <i>Labels:</i>  'Malignant/Benign' <br />
+<br /> 
+      This project is based on the <a href="https://lvdmaaten.github.io/tsne/"><i>great work</i></a> made by <i>Laurens Van Der Maaten</i>
+
+
+</html>
+

@@ -1,0 +1,86 @@
+body { font: 12px Courier;}
+
+p {font: 12.5px Courier;}
+
+svg {
+  font: 10px Courier;
+  padding: 10px;
+  margin: 0 auto;}
+
+div.multi_cont {
+   display:inline-block;
+  height: 630px;
+width:230px;} 
+
+
+text{
+font: 14.5px Courier;
+font-weight:bold;
+}
+
+.but {
+  visibility:hidden;}
+
+.axis,
+.frame {
+  shape-rendering: crispEdges;}
+
+.axis line {
+  stroke: #ddd;
+  fill: none;
+  shape-rendering: crispEdges;}
+
+.axis path {
+  display: none;}
+
+.frame {
+  fill: none;
+  stroke: #aaa;}
+
+circle {
+  fill-opacity: .7;}
+
+circle.hidden {
+  fill: #ccc !important;}
+
+.extent {
+  fill: #000;
+  fill-opacity: .3;
+  stroke: #fff;}
+
+.link {
+  stroke: #000;} 
+
+circle.iono_c{
+r:1.5;}
+
+circle.churn_c{
+r:1;}
+
+circle.seme_c{
+r:1;}
+
+circle.mush_c{
+r:1;}
+
+/*
+.node {
+  cursor: pointer;
+  stroke: #fff;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+} */
