@@ -1,0 +1,47 @@
+body {font: 12px Courier;}
+
+p {font: 12.5px Courier;}
+
+svg {
+  font: 10px Courier;
+  padding: 10px;
+  margin: 0 auto;}
+
+div.multi_cont {display:none;} 
+
+text{
+font: 14.5px Courier;
+font-weight:bold;}
+
+.but {visibility:hidden;}
+
+.axis,
+.frame {shape-rendering: crispEdges;}
+
+.axis line {
+  stroke: #ddd;
+  fill: none;
+  shape-rendering: crispEdges;}
+
+.axis path {display: none;}
+
+.frame {
+  fill: none;
+  stroke: #aaa;}
+
+circle {fill-opacity: .7;}
+
+circle.hidden {fill: #ccc !important;}
+
+.extent {
+  fill: #000;
+  fill-opacity: .3;
+  stroke: #fff;}
+
+.link {stroke: #000;} 
+
+circle.S {r:1;}
+
+circle.M {r:1.5;}
+
+circle.L {r:2;}
